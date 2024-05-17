@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<div class="container">
+    <h1>Capitalize</h1>
+    <input type="text" placeholder="enter any sentence" id="input">
+    <button id="btn">Capitalize</button>
+    <button id="reverse">Reverse</button>
+    <button id="reversewordBtn">Reverse Word By Word</button>
+</div>
+
+<div id="output"></div>
+
+<script>
+    let input = document.getElementById('input');
+    let btn = document.getElementById('btn');
+    let output = document.getElementById('output');
+    let reverseBtn = document.getElementById('reverse');
+    let reversewordBtn = document.getElementById('reversewordBtn'); // corrected id
+
+    btn.addEventListener('click', () => {
+        let inputValue = input.value;
+        let res = capitalize(inputValue);
+        output.innerHTML = `<h2>${res}</h2>`;
+    })
+
+    reverseBtn.addEventListener("click", () => {
+        let inputValue = input.value;
+        let res = reverse(inputValue);
+        output.innerHTML = `<h2>${res}</h2>`;
+    })
+
+    reversewordBtn.addEventListener("click", () => { // corrected event listener
+        let inputValue = input.value;
+        let res = reverseWordByWord(inputValue); // renamed function
+        output.innerHTML = `<h2>${res}</h2>`;
+    })
+
+    function capitalize(str) {
+        let s = '';
+        for (let i = 0; i < str.length; i++) {
+            if (i == 0 || str[i - 1] == ' ') {
+                s = s + str[i].toUpperCase();
+            } else {
+                s = s + str[i];
+            }
+        }
+        return s;
+    }
+
+    function reverse(str) {
+        let b = "";
+        let i = str.length - 1;
+        while (i >= 0) {
+            b += str[i];
+            i = i - 1;
+        }
+        return b;
+    }
+
+    function reverseWordByWord(str) { // renamed function
+        return str.split(' ').reverse().join(' ');
+    }
+
+</script>
+</body>
+</html> 
